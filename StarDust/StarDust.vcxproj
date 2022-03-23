@@ -19,15 +19,27 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="collision.cpp" />
     <ClCompile Include="DirectX.cpp" />
+    <ClCompile Include="floor.cpp" />
+    <ClCompile Include="game1-1.cpp" />
+    <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="scene.cpp" />
+    <ClCompile Include="sprite.cpp" />
     <ClCompile Include="texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="collision.h" />
     <ClInclude Include="DirectX.h" />
+    <ClInclude Include="floor.h" />
+    <ClInclude Include="game1-1.h" />
+    <ClInclude Include="input.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="scene.h" />
+    <ClInclude Include="sprite.h" />
     <ClInclude Include="texture.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

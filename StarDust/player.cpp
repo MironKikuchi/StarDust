@@ -1,18 +1,8 @@
-#include "DirectX.h"
+#include "main.h"
 #include "player.h"
+#include "input.h"
 #include "texture.h"
 
-
-//プレイヤークラス
-class PLAYER
-{
-public:
-
-	D3DXVECTOR2 pos = { 5, 1 };		  				//プレイヤーの現在位置
-	//D3DXVECTOR2 acceleration = { 5, 1 };	//XとYにかかる加速度
-	//float		jumpSpeed = -7.5;			//ジャンプした時の上がり速度
-	//COLBOX		colBox;
-};
 
 //グローバル変数の定義
 static PLAYER g_Player;
@@ -22,8 +12,14 @@ void InitPlayer(void)
 {
 	g_Player.pos.x = (SCREEN_WIDTH / 2) - 100;
 	g_Player.pos.y = (SCREEN_HEIGHT / 2) + 245;
+	g_Player.isJamp = false;
+	g_Player.isWall = false;
+	g_Player.IsGrandCheck = true;
 
 	g_TextureIndex = LoadTexture("texture/player.png");
+
+	g_Player.colBox.width = (PLAYER_SIZE_X / 2);
+	g_Player.colBox.height = (PLAYER_SIZE_Y / 2) + 12;
 }
 
 void UninitPlayer(void)
@@ -33,7 +29,15 @@ void UninitPlayer(void)
 
 void UpdatePlayer(void)
 {
+	g_Player.CheckToJamp();
 
+	/*if (g_Player.pos.y >= SCREEN_HEIGHT)
+	{
+		g_Player.pos.y = (SCREEN_HEIGHT - PLAYER_SIZE_Y);
+	}*/
+
+	g_Player.colBox.posX = g_Player.pos.x;
+	g_Player.colBox.posY = g_Player.pos.y;
 }
 
 void DrawPlayer(void)
@@ -78,4 +82,57 @@ void DrawPlayer(void)
 		v,
 		sizeof(Vertex2D)
 	);
+}
+
+void PlayerIsGrand(void)
+{
+	g_Player.pos.y = g_Player.pos.y;
+	/*char str[256];
+	sprintf_s(str, "PosY: %d\n", g_Player.pos.y);
+	OutputDebugString(str);*/
+}
+
+//void PlayerIsGrand(bool flag)
+//{
+//	
+//	if (g_Player.IsGrandCheck == true)
+//	{
+//		g_Player.pos.y = g_Player.pos.y;
+//		g_Player.isJamp = false;
+//		g_Player.isWall = false;
+//	}
+//	else if (g_Player.IsGrandCheck == false)
+//	{
+//		return;
+//	}
+//	char str[256];
+//	sprintf_s(str, "PosY: %d\n", g_Player.IsGrandCheck);
+//	OutputDebugString(str);
+//}
+
+//void HitTheWall(void)
+//{
+//	g_Player.pos.x == g_Player.pos.x;
+//	g_Player.pos.y += 1;
+//}
+
+
+void HitTheWall(bool flag)
+{
+	g_Player.isWall = flag;
+
+	if (g_Player.isWall == true)
+	{
+		g_Player.pos.x == g_Player.pos.x;
+		g_Player.pos.y += 1;
+	}
+	else
+	{
+		return;
+	}
+
+}
+COLBOX GetPlayerColBox(void)
+{
+	return (g_Player.colBox);
 }

@@ -11,9 +11,10 @@
 #define WINDOW_CAPTION "Star Dust"
 
 
-
-void UpdateWindow(void);
-void DrawWindow(void);
+//windowのイベントを処理する関数
+LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+void UpdateMain(HWND hWnd);
+void DrawMain(void);
 
 // ２Dポリゴン頂点構造体
 typedef struct Vertex2D_tag

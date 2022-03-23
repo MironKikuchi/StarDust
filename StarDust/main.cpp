@@ -2,10 +2,11 @@
 #include <Windows.h>
 #include "main.h"
 #include "DirectX.h"
-#include "player.h"
+#include "game1-1.h"
+#include "input.h"
+#include "texture.h"
+#include "scene.h"
 
-//windowのイベントを処理する関数
-LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 //エントリーポイント
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
@@ -66,6 +67,9 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
 	//ウィンドウのバックバッファ初期化
 	Initialize(gameWindow);
+	Keyboard_Initialize(hInstance, gameWindow);
+
+	InitScene(SCENE_GAME1_1);
 
 	//メッセージループ
 	MSG msg = {};
@@ -79,16 +83,18 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 		}
 		else {
 			//ゲームの処理をここに書いていく
-			UpdateWindow(gameWindow);
+			UpdateMain(gameWindow);
 
-			DrawWindow();
+			DrawMain();
 
 
 		}
 	}
 
 	//シーンの終了処理
-	
+	UninitScene();
+	Keyboard_Finalize();
+	UninitTexture();
 
 	return (int)msg.wParam;
 }
@@ -128,13 +134,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 }
 
 
-void UpdateWindow(void)
+void UpdateMain(HWND hWnd)
 {
-	
+	Keyboard_Update();
+
+	UpdateScene();
 }
 
 
-void DrawWindow(void)
+void DrawMain(void)
 {
 	LPDIRECT3DDEVICE9 pDevice;
 	pDevice = GetDevice();
@@ -152,7 +160,7 @@ void DrawWindow(void)
 	pDevice->BeginScene();
 
 	// ゲームの描画処理
-	DrawPlayer();
+	DrawScene();
 
 	// 描画の終了
 	pDevice->EndScene();

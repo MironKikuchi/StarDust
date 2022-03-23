@@ -1,4 +1,3 @@
-#include "DirectX.h"
 #include "texture.h"
 
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <d3dx9.h>
+#include "DirectX.h"
 
 #define MAX_TEXTURE_NUM 1000
 
