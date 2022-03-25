@@ -1,8 +1,17 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: 中間ディレクトリ (Debug\) に別のプロジェクト (GAME2.vcxproj) と共有されているファイルが含まれています。これにより、クリーンしてリビルド動作が適切に行われない可能性があります。
+  collision.cpp
+C:\Users\miron\Projects\StarDust\StarDust\player.h(22,23): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
+  game1-1.cpp
+C:\Users\miron\Projects\StarDust\StarDust\player.h(22,23): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
   player.cpp
-C:\Users\miron\Projects\StarDust\StarDust\player.h(21,23): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
-C:\Users\miron\Projects\StarDust\StarDust\player.cpp(39,37): warning C4244: '=': 'FLOAT' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\miron\Projects\StarDust\StarDust\player.cpp(40,37): warning C4244: '=': 'FLOAT' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\miron\Projects\StarDust\StarDust\player.cpp(124,25): warning C4805: '==': 演算中の 'int' 型と 'bool' 型の混用は安全ではありません
-C:\Users\miron\Projects\StarDust\StarDust\player.cpp(126,18): warning C4553: '==': 式の結果が使用されていません。'=' を意図していますか?
+C:\Users\miron\Projects\StarDust\StarDust\player.h(22,23): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
+C:\Users\miron\Projects\StarDust\StarDust\player.cpp(37,37): warning C4244: '=': 'FLOAT' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\StarDust\StarDust\player.cpp(38,37): warning C4244: '=': 'FLOAT' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\StarDust\StarDust\player.cpp(97,24): warning C4305: '+=': 'double' から 'FLOAT' へ切り詰めます。
+C:\Users\miron\Projects\StarDust\StarDust\player.cpp(133,25): warning C4805: '==': 演算中の 'int' 型と 'bool' 型の混用は安全ではありません
+C:\Users\miron\Projects\StarDust\StarDust\player.cpp(135,18): warning C4553: '==': 式の結果が使用されていません。'=' を意図していますか?
+C:\Users\miron\Projects\StarDust\StarDust\player.cpp(152,28): warning C4244: '=': 'FLOAT' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\StarDust\StarDust\player.cpp(153,28): warning C4244: '=': 'FLOAT' から 'int' への変換です。データが失われる可能性があります。
+  コードを生成中...
+C:\Users\miron\Projects\StarDust\StarDust\collision.cpp(142): warning C4715: 'HitCheckPlayerVsWall': 値を返さないコントロール パスがあります。
   StarDust.vcxproj -> C:\Users\miron\Projects\StarDust\Debug\StarDust.exe

@@ -13,5 +13,6 @@ typedef struct COLBOX
 void UninitCollision(void);
 void UpdateCollision(void);
 
+int HitCheckCollisionBox(COLBOX boxA, COLBOX boxB);
 int HitCheckPlayerVsGrand(COLBOX boxA, COLBOX boxB);
 int HitCheckPlayerVsWall(COLBOX boxA, COLBOX boxB);

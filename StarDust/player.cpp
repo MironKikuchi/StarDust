@@ -10,16 +10,16 @@ static int g_TextureIndex;
 
 void InitPlayer(void)
 {
-	g_Player.pos.x = (SCREEN_WIDTH / 2) - 100;
-	g_Player.pos.y = (SCREEN_HEIGHT / 2) + 245;
-	g_Player.isJamp = false;
-	g_Player.isWall = false;
-	g_Player.IsGrandCheck = true;
+	g_Player.pos.x			= (SCREEN_WIDTH / 2) - 100;
+	g_Player.pos.y			= (SCREEN_HEIGHT / 2) + 245;
+	g_Player.isJump			= false;
+	g_Player.isWall			= false;
+	//g_Player.IsGrandCheck	= true;
+	g_Player.colBox.width	= (PLAYER_SIZE_X / 2);
+	g_Player.colBox.height	= (PLAYER_SIZE_Y / 2) + 12;
+
 
 	g_TextureIndex = LoadTexture("texture/player.png");
-
-	g_Player.colBox.width = (PLAYER_SIZE_X / 2);
-	g_Player.colBox.height = (PLAYER_SIZE_Y / 2) + 12;
 }
 
 void UninitPlayer(void)
@@ -29,12 +29,10 @@ void UninitPlayer(void)
 
 void UpdatePlayer(void)
 {
-	g_Player.CheckToJamp();
+	g_Player.oldPos.x = g_Player.pos.x;
+	g_Player.oldPos.y = g_Player.pos.y;
 
-	/*if (g_Player.pos.y >= SCREEN_HEIGHT)
-	{
-		g_Player.pos.y = (SCREEN_HEIGHT - PLAYER_SIZE_Y);
-	}*/
+	g_Player.CheckToJump();
 
 	g_Player.colBox.posX = g_Player.pos.x;
 	g_Player.colBox.posY = g_Player.pos.y;
@@ -86,7 +84,18 @@ void DrawPlayer(void)
 
 void PlayerIsGrand(void)
 {
-	g_Player.pos.y = g_Player.pos.y;
+	g_Player.pos.y = g_Player.oldPos.y;
+	g_Player.isJump = false;
+	g_Player.colBox.posY = g_Player.colBox.posY; 
+	char str[256];
+	sprintf_s(str, "PosY: %f\n", g_Player.pos.y);
+	OutputDebugString(str);
+}
+
+void PlayerIsNotGrand(void)
+{
+	g_Player.pos.y += 0.01;
+	//g_Player.colBox.posY = g_Player.colBox.posY; 
 	/*char str[256];
 	sprintf_s(str, "PosY: %d\n", g_Player.pos.y);
 	OutputDebugString(str);*/
@@ -98,7 +107,7 @@ void PlayerIsGrand(void)
 //	if (g_Player.IsGrandCheck == true)
 //	{
 //		g_Player.pos.y = g_Player.pos.y;
-//		g_Player.isJamp = false;
+//		g_Player.isJump = false;
 //		g_Player.isWall = false;
 //	}
 //	else if (g_Player.IsGrandCheck == false)
@@ -135,4 +144,15 @@ void HitTheWall(bool flag)
 COLBOX GetPlayerColBox(void)
 {
 	return (g_Player.colBox);
+}
+
+COLBOX GetOldColBoxPlayer(void)
+{
+	COLBOX old;
+	old.posX = g_Player.oldPos.x;
+	old.posY = g_Player.oldPos.y;
+	old.width = (PLAYER_SIZE_X / 2);
+	old.height = (PLAYER_SIZE_Y / 2) + 12;
+
+	return (old);
 }

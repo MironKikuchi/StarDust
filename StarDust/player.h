@@ -15,12 +15,13 @@ class PLAYER
 {
 public:
 	
-	D3DXVECTOR2 pos;		  				//プレイヤーの現在位置
-	D3DXVECTOR2 acceleration	= { 5, 1 };	//XとYにかかる加速度
+	D3DXVECTOR2 pos;		  					//プレイヤーの現在位置
+	D3DXVECTOR2 oldPos;		  					//プレイヤーの過去位置
+	D3DXVECTOR2 acceleration	= { 0, 0 };		//XとYにかかる加速度
 	D3DXVECTOR2	isJumpSpeed		= { 0, -7.5 };	//ジャンプした時の上がり速度
-	float		isJampGravity	= 0.275;		//ジャンプ後にかかる重力
+	float		isJumpGravity	= 0.275;		//ジャンプ後にかかる重力
 	COLBOX		colBox;
-	int			isJamp;
+	int			isJump;
 	int			isWall;
 	int			IsGrandCheck;
 
@@ -29,17 +30,19 @@ public:
 	{
 		if (acceleration.y != 0)
 		{
-			acceleration.y += isJampGravity;
+			acceleration.y += isJumpGravity;
 		}
 	}
-	void CheckToJamp(void)
+	void CheckToJump(void)
 	{
 		if (Keyboard_IsTrigger(DIK_SPACE))
 		{
-			
-			if (isJamp == false)
+			/*isJump = true;
+			IsGrandCheck = false;
+			acceleration.y = isJumpSpeed.y;*/
+			if (isJump == false)
 			{
-				isJamp = true;
+				isJump = true;
 				IsGrandCheck = false;
 				acceleration.y = isJumpSpeed.y;
 				
@@ -50,9 +53,8 @@ public:
 			}
 		}
 
-		if (isJamp != false)
+		if (isJump != false)
 		{
-			
 			acceleration.x = 0;
 			if (Keyboard_IsPress(DIK_LEFT))
 			{
@@ -78,6 +80,8 @@ void UpdatePlayer(void);
 void DrawPlayer(void);
 
 void PlayerIsGrand(void);
-void PlayerIsGrand(bool flag);
+void PlayerIsNotGrand(void);
+//void PlayerIsGrand(bool flag);
 void HitTheWall(bool flag);
 COLBOX GetPlayerColBox(void);
+COLBOX GetOldColBoxPlayer(void);
